@@ -1,0 +1,14 @@
+ollama
+matplotlib
+openai
+nltk
+pandas
+tiktoken
+jsonlines
+ipykernel
+transformers
+scikit-learn
+javalang
+llama-index
+llama-index-llms-ollama
+ipywidgets

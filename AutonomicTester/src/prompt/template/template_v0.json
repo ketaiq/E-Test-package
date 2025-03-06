@@ -1,0 +1,3 @@
+{
+    "task": "Given FUNCTION CANDIDATE, MONITORED SCENARIO and EXISTING TEST CASES, you should answer a number indicating its priority for testing. Answer 1 if MONITORED SCENARIO is already-tested. Answer 2 if MONITORED SCENARIO is safe-not-yet-tested. Answer 3 if MONITORED SCENARIO is error-prone. Do NOT explain your answer."
+}

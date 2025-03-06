@@ -1,0 +1,10 @@
+{
+    "questions": [
+        "Is MONITORED SCENARIO a similar scenario compared with EXISTING TEST CASES?",
+        "Will FUNCTION CANDIDATE work differently when executing under MONITORED SCENARIO?",
+        "Will FUNCTION CANDIDATE raise any runtime error or exception when executing under MONITORED SCENARIO?",
+        "Does FUNCTION CANDIDATE still produce correct results when executing under MONITORED SCENARIO?",
+        "Will MONITORED SCENARIO reveal any bug in FUNCTION CANDIDATE? If YES, which line of code is buggy?"
+    ],
+    "task": "Given a FUNCTION CANDIDATE and a MONITORED SCENARIO, you should answer all questions in QUESTIONS. For each question, you should answer with YES or NO and give a reasonable explanation. Put only YES or NO between [ANSWER] and [/ANSWER] tags. Explanation must be between [EXPLANATION] and [/EXPLANATION] tags. Put the buggy line of code between [BUGGYLINE] and [/BUGGYLINE] tags if exists."
+}

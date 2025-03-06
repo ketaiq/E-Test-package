@@ -1,0 +1,26 @@
+{
+    "BUGGY": {
+        "Q1": "NO",
+        "Q2": "YES",
+        "Q3": "YES",
+        "Q4": "YES",
+        "Q5": "NO",
+        "Q6": "YES"
+    },
+    "FIXED": {
+        "Q1": "NO",
+        "Q2": "YES",
+        "Q3": "YES",
+        "Q4": "NO",
+        "Q5": "YES",
+        "Q6": "NO"
+    },
+    "SIMILAR": {
+        "Q1": "YES",
+        "Q2": "NO",
+        "Q3": "NO",
+        "Q4": "NO",
+        "Q5": "YES",
+        "Q6": "NO"
+    }
+}

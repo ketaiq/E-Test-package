@@ -1,0 +1,19 @@
+# MAC files
+.DS_Store
+
+# Python-specific files
+__pycache__/
+
+# Experiment files
+AutonomicTester/experiment_results/*
+
+# Dataset
+FineTuneDataset/
+PromptDataset/
+FastDataset/
+
+images/
+plotdata/
+
+# Environment files
+.venv

@@ -1,0 +1,10 @@
+{
+    "questions": {
+        "Q1": "Is monitored scenario {monitored_scenario} a similar scenario compared with existing test suite {test_suite} of class {class_name}?",
+        "Q2": "Does monitored scenario {monitored_scenario} cover more lines or branches than existing test suite {test_suite} of class {class_name}?",
+        "Q3": "Will method {method_name} work differently when executing under monitored scenario {monitored_scenario}?",
+        "Q4": "Does method {method_name} still produce correct results when executing under monitored scenario {monitored_scenario}?",
+        "Q5": "Will monitored scenario {monitored_scenario} reveal any bug in method {method_name}?"
+    },
+    "template": "You are an expert on testing Java applications. Your mission is to decide if the monitored scenario is useful for regression or bug detection.\nContext information is below.\n---------------------\n{context_str}\n---------------------\nGiven the context information and not prior knowledge, answer the query with only YES or NO.\nQuery: {query_str}\nAnswer: "
+}

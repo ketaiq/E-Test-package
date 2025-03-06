@@ -1,0 +1,4 @@
+{
+    "role": "user",
+    "content": "Use MONITORED SCENARIO to generate only one test case with an assertion for FUNCTION CANDIDATE but do not catch exceptions. The test case should fail with MONITORED SCENARIO. The test case method signature is public void generatedTestCaseByLLM() throws Exception. Give me only the method code without comments, without import statements and without surrounding classes. Please use only Java 8 syntax with backward compatibility to Java 1.6. Place the code inside a Java code block in Markdown format."
+}

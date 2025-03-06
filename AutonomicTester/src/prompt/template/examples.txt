@@ -1,0 +1,41 @@
+Example 1
+Given the FUNCTION_CANDIDATE
+public class Calculator {
+    public int square(int number) {
+        return number * number;
+    }
+}
+and EXISTING_TEST_CASES
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+public class CalculatorTest {
+    @Test
+    public void testSquare() {
+        Calculator calculator = new Calculator();
+        assertEquals(4, calculator.square(2)); // Test case with input 2
+    }
+}
+and MONITORED_SCENARIO to test the square function with the input 5 together with the knowledge about TOPIC, TASK, QUESTIONS:
+You should give me a response similar to:
+{
+    "Q1": {
+        "question": "Is it redundant to create a test case using MONITORED_SCENARIO added to EXISTING_TEST_CASES?",
+        "answer": "YES",
+        "explanation": "The new input 5 is similar to an existing input 2 in the JUnit test because they are all common integers."
+    },
+    "Q2": {
+        "question": "Does this MONITORED_SCENARIO cover new code fragments not tested in EXISTING_TEST_CASES?",
+        "answer": "NO",
+        "explanation": "The new input 5 does not introduce new code paths or require new environment conditions."
+    },
+    "Q3": {
+        "question": "Given the previous questions, is there a risk of a runtime error/exception or unexpected behavior?",
+        "answer": "NO",
+        "explanation": "The execution should have a similar behaviour as already tested with the number 2."
+    },
+    "Q4": {
+        "question": "Is the final result still correct with this MONITORED_SCENARIO respect to EXISTING_TEST_CASES?",
+        "answer": "YES",
+        "explanation": "The result should remain consistent by asserting calculator.square(5) equal to 25."
+    }
+}

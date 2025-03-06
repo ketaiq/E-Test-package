@@ -1,0 +1,7 @@
+[
+    "Is MONITORED SCENARIO a similar scenario compared with EXISTING TEST CASES?",
+    "Will FUNCTION CANDIDATE work differently when executing under MONITORED SCENARIO?",
+    "Will FUNCTION CANDIDATE raise any runtime error or exception when executing under MONITORED SCENARIO?",
+    "Does FUNCTION CANDIDATE still produce correct results when executing under MONITORED SCENARIO?",
+    "Will MONITORED SCENARIO reveal any bug in FUNCTION CANDIDATE? If YES, which line of code is buggy?"
+]

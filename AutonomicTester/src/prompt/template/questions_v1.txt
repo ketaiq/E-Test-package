@@ -1,0 +1,7 @@
+Q1 Is it redundant to create a test case using MONITORED_SCENARIO added to EXISTING_TEST_CASES?
+
+Q2 Does this MONITORED_SCENARIO cover new code fragments not tested in EXISTING_TEST_CASES?
+
+Q3 Given the previous questions, is there a risk of a runtime error/exception or unexpected behavior?
+
+Q4 Is the final result still correct with this MONITORED_SCENARIO respect to EXISTING_TEST_CASES?

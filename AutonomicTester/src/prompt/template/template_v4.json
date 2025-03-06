@@ -1,0 +1,10 @@
+{
+    "questions": {
+        "Q1": "Is MONITORED SCENARIO a similar scenario compared with EXISTING TEST CASES?",
+        "Q2": "Does MONITORED SCENARIO cover more lines or branches than EXISTING TEST CASES?",
+        "Q3": "Will FUNCTION CANDIDATE work differently when executed under MONITORED SCENARIO?",
+        "Q4": "Does FUNCTION CANDIDATE still produce correct results when executed under MONITORED SCENARIO?",
+        "Q5": "Will MONITORED SCENARIO reveal any bug in FUNCTION CANDIDATE?"
+    },
+    "task": "Given a FUNCTION CANDIDATE and a MONITORED SCENARIO, you should answer all questions in QUESTIONS. For each question, you should answer only YES or NO. Return results in a JSON dictionary, where the key is the question key and the value is the answer."
+}
