@@ -21,7 +21,6 @@ from src.stats.stats import (
     summarize_prompt_statistics_for_defects4j,
 )
 from src.llm.chatgpt.chatgpt_api import check_job_status, fine_tune_gpt, prompt_gpt
-from src.llm.gemini.gemini_api import call_gemini_api
 from src.output.output import (
     create_experiment_folder,
     extract_and_save_results,

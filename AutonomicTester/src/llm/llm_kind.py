@@ -7,13 +7,11 @@ class LLMKind(Enum):
     GPT4 = "OpenAI GPT-4"
     GPT4turbo = "OpenAI GPT-4 Turbo"
     GPT4o = "OpenAI GPT-4o"
-    Gemini = "Google Gemini"
     LLama2_7B = "Meta LLama2 7B"
     LLama3_8B = "Meta LLama3 8B"
     LLama3_70B = "Meta LLama3 70B"
     LLama3_1_8B = "Meta LLama3.1 8B"
     LLama3_3_70B = "Meta LLama3.3 70B"
-    Gemma2_27B = "Google Gemma2 27B"
     Deepseek_R1_70B = "Deepseek R1 70B"
 
     @classmethod
@@ -24,13 +22,11 @@ class LLMKind(Enum):
             "GPT4": "GPT4: require an API key on the environment path",
             "GPT4turbo": "GPT4turbo: require an API key on the environment path",
             "GPT4o": "GPT4o: require an API key on the environment path",
-            "Gemini": "Gemini: require an API key on the environment path and a VPN connected to the USA",
             "LLama2_7B": "LLama2_7B: run locally but require 8 GB of RAM",
             "LLama3_8B": "LLama3_8B: run locally but require 8 GB of RAM",
             "LLama3_70B": "LLama3_70B: run locally but require a GPU with 40 GB of RAM",
             "LLama3_1_8B": "LLama3_1_8B: run locally but require 8 GB of RAM",
             "LLama3_3_70B": "LLama3_3_70B: run locally but require 40 GB of RAM",
-            "Gemma2_27B": "Gemma2_27B: run locally",
             "Deepseek_R1_70B": "Deepseek_R1_70B: run locally but require 40 GB of RAM"
         }
         return "; ".join(f"{description_map[llm.name]}" for llm in cls)
@@ -51,7 +47,6 @@ class LLMKind(Enum):
             "LLama3_70B": "llama3:70b",
             "LLama3_1_8B": "llama3.1",
             "LLama3_3_70B": "llama3.3",
-            "Gemma2_27B": "gemma2:27b",
             "Deepseek_R1_70B": "deepseek-r1:70b"
         }
         if self.name in model_name_map:
@@ -68,7 +63,6 @@ class LLMKind(Enum):
             "GPT3FT": 16385,
             "GPT4turbo": 128000,
             "GPT4o": 128000,
-            "Gemma2_27B": 8192,
         }
         if self.name in model_context_limit_map:
             return model_context_limit_map[self.name]
