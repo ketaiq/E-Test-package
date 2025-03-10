@@ -31,5 +31,6 @@ ARCHIVES_DIR="Archives"
 (
     echo "Extracting plot data ..."
     cd "DataAnalysis"
+    mkdir -p "images"
     tar -xzf "plotdata.tar.gz"
 )
