@@ -43,7 +43,7 @@ To start an experiment from scratch, please run *AutonomicTester* with appropria
 We explain how to reproduce results of Llama3 8B in AutonomicTester's [README](AutonomicTester/README.md), which is feasible to run on a local machine with at least 8 GB of RAM. For other LLMs mentioned in the paper, please check the help message via `python AutonomicTester/main.py -h`.
 
 ## GitHub Dataset
-
+Statistics computed by `DataAnalysis/GH Dataset Stats.ipynb`
 | Project | Version | LOC | #Classes | #Test Suites | #Test Cases | Avg. Test Cases per Test Suite | Avg. LOC per Test Suite |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | Spring Boot | 3.1.12 | 683,988 | 6,901 | 2,261 | 13,328 | 5 | 135 |
