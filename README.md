@@ -1,6 +1,6 @@
 # E-Test-package
 
-This replication package can be used to fully replicate the results of our paper *E-Test: E'er-Improving Test Suites* by Ketai Qiu, Luca Di Grazia, Leonardo Mariani and Mauro Pezzè.
+This replication package can be used to fully replicate the results of our paper [*E-Test: E'er-Improving Test Suites*](https://star.inf.usi.ch/media/papers/2026-icse-etest-ketai.pdf) by Ketai Qiu, Luca Di Grazia, Leonardo Mariani and Mauro Pezzè.
 
 ## Repository Structure
 - **AutonomicTester:** A Python application designed to implement advanced techniques for E-TEST.
