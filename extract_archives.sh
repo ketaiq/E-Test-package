@@ -40,10 +40,11 @@ ARCHIVES_DIR="Archives"
     tar -xzf "plotdata.tar.gz"
 )
 
-# Extract GitHub repos
+# Extract GitHub repos and Llama tokenizer
 (
     echo "Extracting GitHub repos ..."
     GITHUB_REPOS_DIR="DataAnalysis"
     mkdir -p $GITHUB_REPOS_DIR
     tar -xzf "Archives/GitHubRepos.tar.gz" -C $GITHUB_REPOS_DIR
+    tar -xzf "Archives/meta-llama-Llama-3.2-1B.tar.gz" -C .
 )

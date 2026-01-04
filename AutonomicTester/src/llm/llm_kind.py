@@ -104,7 +104,7 @@ class LLMKind(Enum):
         model_name_map = {
             "LLama3_8B": "meta-llama/Meta-Llama-3-8B",
             "LLama3_70B": "meta-llama/Meta-Llama-3-70B",
-            "LLama3_2_1B": "meta-llama/Meta-Llama-3-8B",
+            "LLama3_2_1B": "./meta-llama-Llama-3.2-1B",
             "LLama3_2_3B": "meta-llama/Meta-Llama-3-8B",
             "LLama3_1_8B": "meta-llama/Llama-3.1-8B",
             "LLama3_3_70B": "meta-llama/Llama-3.3-70B-Instruct",
