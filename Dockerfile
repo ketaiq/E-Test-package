@@ -25,7 +25,11 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY AutonomicTester AutonomicTester
+COPY DataAnalysis DataAnalysis
+# COPY ollama_models /root/.ollama/
+COPY extract_archives.sh .
+
 # Setup the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

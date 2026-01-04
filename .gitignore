@@ -24,3 +24,6 @@ DataAnalysis/GitHubRepos
 
 ollama.log
 jupyter.log
+
+ollama_models
+e-test-env-llama3-1b-amd64.tar

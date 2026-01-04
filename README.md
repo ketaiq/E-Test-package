@@ -1,6 +1,17 @@
 # E-Test-package
 
-This replication package can be used to fully replicate the results of our paper [*E-Test: E'er-Improving Test Suites*](https://star.inf.usi.ch/media/papers/2026-icse-etest-ketai.pdf) by Ketai Qiu, Luca Di Grazia, Leonardo Mariani and Mauro Pezzè.
+This artifact contains the environment, code, and data required to fully replicate the results of our ICSE 2026 paper.
+
+### 📄 Paper Details
+**[E-Test: E'er-Improving Test Suites](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/84/E-Test-E-er-Improving-Test-Suites)**
+*Accepted at the 48th International Conference on Software Engineering (ICSE 2026)*
+
+**Authors:** Ketai Qiu, Luca Di Grazia, Leonardo Mariani, and Mauro Pezzè.
+
+### 🔗 Resources
+* **Paper PDF:** [Read here](https://arxiv.org/pdf/2510.19860)
+* **Source Code:** [GitHub Repository](https://github.com/ketaiq/E-Test-package)
+
 
 ## Repository Structure
 - **AutonomicTester:** A Python application designed to implement advanced techniques for E-TEST.
@@ -10,19 +21,33 @@ This replication package can be used to fully replicate the results of our paper
 ## Getting Started
 
 ### Environment Setup
-Create a HuggingFace user access token on https://huggingface.co/docs/hub/security-tokens
+1. Create a HuggingFace user access token on [https://huggingface.co/docs/hub/security-tokens](https://huggingface.co/docs/hub/security-tokens).
 
-Run following commands from project root directory
+2. Install [Docker](https://docs.docker.com/engine/install/).
 
+3. Run following commands from the project root directory. You can build an image from scratch and then switch to other LLMs by changing *OLLAMA_MODEL* to any LLMs available on [Ollama](https://ollama.com/search).
+
+**Step 1. Prepare the Docker image**
 ```sh
 export HUGGING_FACE_API_KEY="YOUR API KEY"
 
+# Choice 1: Build the image locally
 docker build -t e-test-env .
 
+# Choice 2: Pull the pre-built image from Docker Hub
+docker pull ketaiq/e-test-env-llama3-1b:v1.0
+docker tag ketaiq/e-test-env-llama3-1b:v1.0 e-test-env
+
+# Choice 3: Load the pre-built image for Linux AMD64 platform
+docker load -i e-test-env-llama3-1b-amd64.tar
+docker tag e-test-env-llama3-1b-amd64 e-test-env
+```
+
+**Step 2. Run the Docker container**
+```sh
 docker run -it --rm \
   -p 20268:8888 \
   -v $(pwd):/app \
-  -v ollama_storage:/root/.ollama \
   -e HUGGING_FACE_API_KEY=$HUGGING_FACE_API_KEY \
   -e OLLAMA_MODEL="llama3.2:1b" \
   e-test-env

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 model=${OLLAMA_MODEL}
-mkdir -p ./ollama_models
 
 bash /app/extract_archives.sh
 
