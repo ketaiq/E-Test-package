@@ -21,11 +21,12 @@ This artifact contains the environment, code, and data required to fully replica
 ## Getting Started
 
 ### Environment Setup
+
 1. Create a HuggingFace user access token on [https://huggingface.co/docs/hub/security-tokens](https://huggingface.co/docs/hub/security-tokens).
 
 2. Install [Docker](https://docs.docker.com/engine/install/).
 
-3. Run following commands from the project root directory. You can build an image from scratch and then switch to other LLMs by changing *OLLAMA_MODEL* to any LLMs available on [Ollama](https://ollama.com/search).
+3. Run the following commands from the project root directory using a Unix-compatible shell (Bash, Zsh). You can build an image from scratch and then switch to other LLMs by changing *OLLAMA_MODEL* to any LLMs available on [Ollama](https://ollama.com/search).
 
 **Step 1. Prepare the Docker image**
 ```sh
