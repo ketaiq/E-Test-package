@@ -26,6 +26,6 @@ ollama.log
 jupyter.log
 
 ollama_models
-e-test-env-llama3-1b-amd64.tar
+e-test-llama3-1b-amd64.tar
 meta-llama-Llama-3.2-1B
 .ipynb_checkpoints
