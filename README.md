@@ -26,32 +26,32 @@ This artifact contains the environment, code, and data required to fully replica
 
 2. Install [Docker](https://docs.docker.com/engine/install/).
 
-3. Run the following commands from the project root directory using a Unix-compatible shell (Bash, Zsh). You can build an image from scratch and then switch to other LLMs by changing *OLLAMA_MODEL* to any LLMs available on [Ollama](https://ollama.com/search).
+3. Run the following commands from the project root directory using a Unix-compatible shell (Bash, Zsh). You can build an image from scratch and then switch to other LLMs by changing *OLLAMA_MODEL* to any LLMs available on [Ollama](https://ollama.com/search). If you want to use different LLMs, you have to set `-e HUGGING_FACE_API_KEY="hf_xxxxxx"` when starting a Docker container.
 
 **Step 1. Prepare the Docker image**
 ```sh
-export HUGGING_FACE_API_KEY="YOUR API KEY"
+# Choice 1: Pull the pre-built image from Docker Hub
+docker pull ketaiq/e-test:v1-llama3-1b
+docker tag ketaiq/e-test:v1-llama3-1b e-test-llama3-1b
 
-# Choice 1: Build the image locally
-docker build -t e-test-env .
+# Choice 2: Load the pre-built image for Linux AMD64 platform
+docker load -i e-test-llama3-1b-amd64.tar
+docker tag e-test-llama3-1b-amd64 e-test-llama3-1b
 
-# Choice 2: Pull the pre-built image from Docker Hub
-docker pull ketaiq/e-test-env-llama3-1b:v1.0
-docker tag ketaiq/e-test-env-llama3-1b:v1.0 e-test-env
+# Choice 3: Build the image locally
+docker build -f ./E-Test.Dockerfile -t e-test-llama3-1b .
 
-# Choice 3: Load the pre-built image for Linux AMD64 platform
-docker load -i e-test-env-llama3-1b-amd64.tar
-docker tag e-test-env-llama3-1b-amd64 e-test-env
+# Build and push to Docker Hub
+docker buildx build -f E-Test.Dockerfile --platform linux/amd64,linux/arm64 -t ketaiq/e-test:v1-llama3-1b --push .
 ```
 
 **Step 2. Run the Docker container**
 ```sh
 docker run -it --rm \
   -p 20268:8888 \
-  -v $(pwd):/app \
-  -e HUGGING_FACE_API_KEY=$HUGGING_FACE_API_KEY \
   -e OLLAMA_MODEL="llama3.2:1b" \
-  e-test-env
+  -v $(pwd):/app \
+  e-test-llama3-1b
 ```
 
 ### Data Analysis
@@ -67,10 +67,17 @@ You can open http://localhost:20268 to run and edit notebooks directly.
 
 ### E-Test Program
 
-In the Docker interactive shell, run the following command to launch an experiment
+In the Docker interactive shell, run the following commands to launch experiments. The results are generated in the folder `AutonomicTester/experiment_results`. The test case generation also outputs in the folder `Defects4jDataset`.
 ```sh
 # Test Llama3 1B with prompts generated from error-prone scenarios in Defects4J
 python AutonomicTester/main.py prompt -v 4 -d Defects4J -m LLama3_2_1B -s BUGGY
+# Test Llama3 1B with prompts generated from need-test scenarios in Defects4J
+python AutonomicTester/main.py prompt -v 4 -d Defects4J -m LLama3_2_1B -s FIXED
+# Test Llama3 1B with prompts generated from already-tested scenarios in Defects4J
+python AutonomicTester/main.py prompt -v 4 -d Defects4J -m LLama3_2_1B -s SIMILAR
+
+# Test Llama3 1B with test case generation for error-prone scenarios in Defects4J
+python AutonomicTester/main.py prompt -v 4 -d Defects4J -m LLama3_2_1B -s BUGGY -tcg
 ```
 
 For other settings mentioned in the paper, please check the help message via `python AutonomicTester/main.py -h`.

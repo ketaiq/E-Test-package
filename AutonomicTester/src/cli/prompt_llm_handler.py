@@ -9,6 +9,7 @@ import huggingface_hub
 import tiktoken
 from transformers import AutoTokenizer
 from javalang.parser import JavaSyntaxError
+import warnings
 
 from src.testexe.iohelper import parse_generated_test_case
 from src.testexe.defects4j_driver import Defects4jDriver
@@ -27,6 +28,8 @@ from src.llm.llm_kind import LLMKind
 from src.prompt.prompt_kind import PromptKind
 from src.prompt.answer import Answer
 
+
+warnings.filterwarnings("ignore", message=".*validate_default.*")
 
 class PromptLlmHandler:
     LOG_FNAME = "prompt.log"
@@ -48,6 +51,7 @@ class PromptLlmHandler:
         self.num_shots = int(args.few_shots)
         self.response_output_format = args.format
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.enable_tcg = args.test_case_generation
         # Extract prompt paths
         self.prompt_paths = extract_prompt_paths(
             self.dataset,
@@ -117,10 +121,15 @@ class PromptLlmHandler:
     def _initialize_tokenizer(self):
         # Get Llama tokenizer
         if self.chosen_llm.is_ollama_model():
-            huggingface_hub.login(os.environ["HUGGING_FACE_API_KEY"])
-            self.tokenizer_encode = AutoTokenizer.from_pretrained(
-                self.chosen_llm.get_hf_model_name()
-            ).tokenize
+            if os.environ["HUGGING_FACE_API_KEY"]:
+                huggingface_hub.login(os.environ["HUGGING_FACE_API_KEY"])
+                self.tokenizer_encode = AutoTokenizer.from_pretrained(
+                    self.chosen_llm.get_hf_model_name()
+                ).tokenize
+            else:
+                self.tokenizer_encode = AutoTokenizer.from_pretrained(
+                    "./meta-llama-Llama-3.2-1B"
+                ).tokenize
         elif self.chosen_llm is LLMKind.GPT4o:
             self.tokenizer_encode = tiktoken.encoding_for_model("gpt-4o").encode
         elif (
@@ -349,11 +358,11 @@ class PromptLlmHandler:
             try:
                 if self.chosen_llm.is_gpt_model():
                     response, tcg_response = self._prompt_gpt_model(
-                        messages, bug_id, project_id, prompt_stats, False
+                        messages, bug_id, project_id, prompt_stats, self.enable_tcg
                     )
                 elif self.chosen_llm.is_ollama_model():
                     response, tcg_response, num_tokens = self._prompt_llama_model(
-                        messages, bug_id, project_id, prompt_stats, False
+                        messages, bug_id, project_id, prompt_stats, self.enable_tcg
                     )
             except Exception as e:
                 print(e)

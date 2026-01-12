@@ -77,10 +77,15 @@ class RagQueryHandler:
             )
         elif self.chosen_llm.is_llama_model():
             # Set up Llama3 token counter call back
-            huggingface_hub.login(os.environ["HUGGING_FACE_API_KEY"])
-            llama3_tokenizer = AutoTokenizer.from_pretrained(
-                self.chosen_llm.get_hf_model_name()
-            )
+            if os.environ["HUGGING_FACE_API_KEY"]:
+                huggingface_hub.login(os.environ["HUGGING_FACE_API_KEY"])
+                llama3_tokenizer = AutoTokenizer.from_pretrained(
+                    self.chosen_llm.get_hf_model_name()
+                )
+            else:
+                llama3_tokenizer = AutoTokenizer.from_pretrained(
+                    "./meta-llama-Llama-3.2-1B"
+                )
             self.token_counter = TokenCountingHandler(
                 tokenizer=llama3_tokenizer.tokenize
             )
@@ -240,7 +245,7 @@ class RagQueryHandler:
         )
         if os.path.exists(test_suite_stats_path):
             return
-        huggingface_hub.login(os.environ["HUGGING_FACE_API_KEY"])
+        # huggingface_hub.login(os.environ["HUGGING_FACE_API_KEY"])
         experiments = self._extract_experiments()
         num_exps = len(experiments)
         # Iterate over Java projects
@@ -273,7 +278,7 @@ class RagQueryHandler:
                         if "test" in node.name.lower() or "@Test" in node.annotations
                     )
                     num_chars = len(test_suite)
-                    llama3_tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B")
+                    llama3_tokenizer = AutoTokenizer.from_pretrained("./meta-llama-Llama-3.2-1B")
                     gpt_tokenizer = tiktoken.get_encoding("cl100k_base")
                     num_gpt_tokens = len(gpt_tokenizer.encode(test_suite))
                     num_llama_tokens = len(llama3_tokenizer.tokenize(test_suite))

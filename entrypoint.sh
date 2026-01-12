@@ -1,7 +1,6 @@
 #!/bin/bash
 
 model=${OLLAMA_MODEL}
-
 bash /app/extract_archives.sh
 
 # Start Ollama in the background
@@ -24,8 +23,6 @@ else
     echo "$model model already present."
 fi
 
-# Activate the virtual environment explicitly (safety measure)
-source /opt/venv/bin/activate
 
 # Launch Jupyter Lab
 nohup jupyter lab --notebook-dir=/app/DataAnalysis --ip=0.0.0.0 --allow-root \
